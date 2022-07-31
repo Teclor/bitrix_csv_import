@@ -1,0 +1,9 @@
+<?php
+$MESS["NEWS_LIST.PRODUCTS.EMPTY_RESULT"] = "Список пуст";
+$MESS["NEWS_LIST.PRODUCTS.XML_ID"] = "Внешний код";
+$MESS["NEWS_LIST.PRODUCTS.NAME"] = "Название";
+$MESS["NEWS_LIST.PRODUCTS.VENDOR"] = "Поставщик";
+$MESS["NEWS_LIST.PRODUCTS.MATERIAL"] = "Материал";
+$MESS["NEWS_LIST.PRODUCTS.QUANTITY"] = "Количество";
+$MESS["NEWS_LIST.PRODUCTS.PRICE"] = "Цена";
+?>
