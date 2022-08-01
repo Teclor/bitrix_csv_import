@@ -48,7 +48,7 @@ class Singular
                     $listProperties[$property['ID']] = $property;
                 }
                 else {
-                    $plainProperties[$property['CODE']] = $property;
+                    $plainProperties[$property['ID']] = $property;
                 }
             }
             if (count($listProperties) > 0) {
@@ -61,17 +61,12 @@ class Singular
                 }
             }
             
-            $this->properties = array_merge($plainProperties, $listProperties);
+            $this->properties = $plainProperties + $listProperties;
         }
-        
+
         return $this->properties;
     }
-    
-    public function getByCode(string $code): array
-    {
-        return self::getIblockProperties()[$code] ?? [];
-    }
-    
+
     public static function isEnumProperty($property): bool
     {
         return $property['PROPERTY_TYPE'] === PropertyTable::TYPE_LIST;
@@ -84,7 +79,8 @@ class Singular
         if ($enumValueId === false) {
             throw new SystemException("Unable to add enum property $propertyId value $value");
         }
-        
+        $this->properties[$propertyId]['VALUE_ID_LIST'][$value] = $enumValueId;
+
         return $enumValueId;
     }
 }

@@ -8,8 +8,6 @@ interface IImportable
     
     public function getProperties(): array;
     
-    public function getLinkProperties(): array;
-    
     public function addProperty(string $code, $value);
     
     public function addField(string $name, $value);
