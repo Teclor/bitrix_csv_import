@@ -16,7 +16,6 @@ class Element implements IImportable
     protected array $mappedFields;
     protected array $fields;
     protected array $properties;
-    protected array $linkProperties;
 
     /**
      * @throws ArgumentNullException | \Bitrix\Main\SystemException | FieldValueNotFoundException
@@ -38,11 +37,6 @@ class Element implements IImportable
     public function getProperties(): array
     {
         return $this->properties;
-    }
-
-    public function getLinkProperties(): array
-    {
-        return $this->linkProperties;
     }
 
     public function addProperty(string $code, $value)
@@ -79,7 +73,6 @@ class Element implements IImportable
     protected function collectProperties()
     {
         $this->properties = [];
-        $this->linkProperties = [];
         $iblockProperties = $this->iblockProperty->getIblockProperties();
         foreach ($iblockProperties as $property) {
             if (!empty($this->mappedFields[$property['CODE']])) {
@@ -101,5 +94,4 @@ class Element implements IImportable
             }
         }
     }
-
 }
