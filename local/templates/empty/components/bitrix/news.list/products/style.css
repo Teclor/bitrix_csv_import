@@ -1,0 +1,45 @@
+.table-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-wrapper {
+    border: 1px solid black;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2vh 1vw;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) repeat(3, 2fr) repeat(2, 1fr);
+    grid-gap: 5px;
+    background-color: #ffffff;
+    width: 100%;
+    margin: 2px 0;
+    font-size: 1.2rem;
+}
+
+.table-cell {
+    padding: 5px 10px;
+    background-color: #c4e1ff;
+}
+
+.header-cell {
+    background-color: #afafaf;
+    font-weight: bold;
+    text-align: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vh 0;
+}
