@@ -3,9 +3,9 @@
 namespace Sprint\Migration;
 
 
-class TASK_1_IBLOCK_PRODUCTS20220801004809 extends Version
+class TASK_2_IBLOCK_PRODUCTS20220801033432 extends Version
 {
-    protected $description = "This migration creates products iblock using sprint.migration module";
+    protected $description = "This migration creates products iblock (with changes for task2) using sprint.migration module";
 
     protected $moduleVersion = "4.1.1";
 
@@ -345,7 +345,7 @@ class TASK_1_IBLOCK_PRODUCTS20220801004809 extends Version
             'SORT' => '500',
             'CODE' => 'VENDOR',
             'DEFAULT_VALUE' => '',
-            'PROPERTY_TYPE' => 'S',
+            'PROPERTY_TYPE' => 'L',
             'ROW_COUNT' => '1',
             'COL_COUNT' => '30',
             'LIST_TYPE' => 'L',
@@ -362,6 +362,45 @@ class TASK_1_IBLOCK_PRODUCTS20220801004809 extends Version
             'USER_TYPE' => null,
             'USER_TYPE_SETTINGS' => null,
             'HINT' => '',
+            'VALUES' =>
+                [
+                    0 =>
+                        [
+                            'VALUE' => 'Fisller',
+                            'DEF' => 'N',
+                            'SORT' => '500',
+                            'XML_ID' => 'da6fa73944d157ed59289143ed07838e',
+                        ],
+                    1 =>
+                        [
+                            'VALUE' => 'Vitesse',
+                            'DEF' => 'N',
+                            'SORT' => '500',
+                            'XML_ID' => '',
+                        ],
+                    2 =>
+                        [
+                            'VALUE' => 'Woll',
+                            'DEF' => 'N',
+                            'SORT' => '500',
+                            'XML_ID' => '44aaf4fe1e6d3939e415d20bb3c1ddc7',
+                        ],
+                ],
+            'FEATURES' =>
+                [
+                    0 =>
+                        [
+                            'MODULE_ID' => 'iblock',
+                            'FEATURE_ID' => 'DETAIL_PAGE_SHOW',
+                            'IS_ENABLED' => 'N',
+                        ],
+                    1 =>
+                        [
+                            'MODULE_ID' => 'iblock',
+                            'FEATURE_ID' => 'LIST_PAGE_SHOW',
+                            'IS_ENABLED' => 'N',
+                        ],
+                ],
         ]);
         $helper->Iblock()->saveProperty($iblockId, [
             'NAME' => 'Материал',
@@ -466,6 +505,6 @@ class TASK_1_IBLOCK_PRODUCTS20220801004809 extends Version
 
     public function down()
     {
-        echo 'No actions for revert configured';
+        echo "Revert actions are not configured";
     }
 }

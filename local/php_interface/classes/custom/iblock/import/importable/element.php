@@ -5,6 +5,7 @@ namespace Custom\Iblock\Import\Importable;
 
 use Bitrix\Iblock\ElementTable;
 use Bitrix\Main\ArgumentNullException;
+use Bitrix\Main\SystemException;
 use Custom\Iblock\Import\Exception\FieldValueNotFoundException;
 use Custom\Iblock\Property\Singular;
 
@@ -74,7 +75,7 @@ class Element implements IImportable
         }
     }
 
-    /*** @throws \Bitrix\Main\SystemException | FieldValueNotFoundException */
+    /*** @throws \Bitrix\Main\SystemException | FieldValueNotFoundException | SystemException */
     protected function collectProperties()
     {
         $this->properties = [];
@@ -82,7 +83,18 @@ class Element implements IImportable
         $iblockProperties = $this->iblockProperty->getIblockProperties();
         foreach ($iblockProperties as $property) {
             if (!empty($this->mappedFields[$property['CODE']])) {
-                $this->properties[$property['CODE']] = $this->mappedFields[$property['CODE']];
+                if ($this->iblockProperty::isEnumProperty($property)) {
+                    if (isset($property['VALUE_ID_LIST'][$this->mappedFields[$property['CODE']]])) {
+                        $this->properties[$property['CODE']] = $property['VALUE_ID_LIST'][$this->mappedFields[$property['CODE']]];
+                    }
+                    else {
+                        $propertyValueId = $this->iblockProperty->addEnumPropertyValue($property['ID'], $this->mappedFields[$property['CODE']]);
+                        $this->properties[$property['CODE']] = $propertyValueId;
+                    }
+                }
+                else {
+                    $this->properties[$property['CODE']] = $this->mappedFields[$property['CODE']];
+                }
             }
             elseif ($property['IS_REQUIRED'] === 'Y') {
                 throw new FieldValueNotFoundException($property['CODE']);

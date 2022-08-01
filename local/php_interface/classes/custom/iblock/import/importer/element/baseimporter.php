@@ -85,7 +85,7 @@ abstract class BaseImporter implements IImporter
             }
             catch (\Throwable $exception) {
                 $this->errorCollection->setError(new Error(
-                    'Unable to create the element',
+                    'Unable to create the element', 0,
                     [
                         'error' => $exception->getMessage(),
                         'fields' => $element->getFields(),
@@ -116,7 +116,7 @@ abstract class BaseImporter implements IImporter
             }
             catch (\Throwable $exception) {
                 $this->errorCollection->setError(new Error(
-                    'An error occurred during the import process',
+                    'An error occurred during the import process', 0,
                     [
                         'error' => $exception->getMessage(),
                         'fields' => $element->getFields(),
@@ -134,7 +134,7 @@ abstract class BaseImporter implements IImporter
                 $this->addedIds[] = $saveResult->getId();
             }
             elseif (is_a($saveResult, UpdateResult::class)) {
-                $this->updatedIds[] = $saveResult->getId();
+                $this->updatedIds[] = $element->getFields()['ID'];
             }
         }
         else {
